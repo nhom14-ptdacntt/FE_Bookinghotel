@@ -12,4 +12,9 @@
   border-radius: 40px !important;
   padding: 20px;
 }
-
+button, .btn {
+  height: 38px;
+  line-height: 50px;
+  vertical-align: middle; 
+  overflow: hidden;
+}

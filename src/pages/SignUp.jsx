@@ -1,4 +1,4 @@
-// Login.jsx
+
 import React from 'react';
 import {
   MDBBtn,
@@ -13,7 +13,7 @@ import {
 } from 'mdb-react-ui-kit';
 import '../styles/Login.css';
 
-function Login() {
+function Signup() {
   return (
     <MDBContainer fluid className='p-5 background-radial-gradient overflow-hidden' style={{ overflow: 'hidden' }}>
       <MDBRow>
@@ -73,4 +73,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
