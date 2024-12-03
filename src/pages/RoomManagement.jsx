@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import NavBar from '../components/NavBar';
+import Navbarmanager from '../components/Navbarmanger';
 import RoomStatus from '../components/RoomStatus';
 import '../styles/RoomManagement.css';
 
@@ -21,7 +21,7 @@ function RoomManagement() {
 
   return (
     <div className="room-management-page">
-        <NavBar />
+        <Navbarmanager/>
       <h1>Room Management</h1>
       <RoomStatus rooms={rooms} onUpdateRoomStatus={handleUpdateRoomStatus} />
     </div>

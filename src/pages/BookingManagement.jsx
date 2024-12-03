@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import BookingList from '../components/BookingList';
 import { useNavigate } from 'react-router-dom';
 import '../styles/BookingManagement.css';
-import NavBar from '../components/NavBar';
+import Navbarmanager from '../components/Navbarmanger';
 
 function BookingManagement() {
   const [bookings, setBookings] = useState([
@@ -30,7 +30,7 @@ function BookingManagement() {
 
   return (
     <div className="booking-page">
-      <NavBar/>
+      <Navbarmanager/>
       <h1>Booking Management</h1>
       <BookingList
         bookings={bookings}

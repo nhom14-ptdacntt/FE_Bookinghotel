@@ -8,7 +8,7 @@
   justify-items: center; 
 }
 
-h1 {
+.booking-page>h1 {
   text-align: center;
   color: #333;
   margin-bottom: 30px;
