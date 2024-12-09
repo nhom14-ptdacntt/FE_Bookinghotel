@@ -47,3 +47,50 @@
     margin: 10px 0 !important;
   }
 }
+.navbarmanager {
+  display: flex !important;
+  justify-content: space-between !important; /* Căn khoảng cách giữa các phần */
+  align-items: center !important;
+}
+
+.nav-links {
+  display: flex !important;
+}
+
+.user-info {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.username {
+  margin-right: 15px !important;
+  font-weight: bold !important;
+  color: white !important;
+}
+
+.logout-btn {
+  background-color: #f44336 !important;
+  color: white !important;
+  border: none !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s !important;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f !important;
+}
+
+.login-link {
+  color: white !important;
+  text-decoration: none !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  background-color: #4CAF50 !important;
+  transition: background-color 0.3s, color 0.3s !important;
+}
+
+.login-link:hover {
+  background-color: #45a049 !important;
+}

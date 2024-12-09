@@ -1,5 +1,5 @@
 .background-radial-gradient {
-  background-image: url('../components/image/login.jpg');
+  background-image: url('../assets/image/login.jpg') !important;
   background-size: cover;
   background-position: center;
   height: 100vh;

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import Navbarmanager from '../components/Navbarmanger';
+import Navbarmanager from '../components/Navbarmanager';
 import RoomStatus from '../components/RoomStatus';
 import '../styles/RoomManagement.css';
 

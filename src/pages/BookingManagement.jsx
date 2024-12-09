@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import BookingList from '../components/BookingList';
 import { useNavigate } from 'react-router-dom';
 import '../styles/BookingManagement.css';
-import Navbarmanager from '../components/Navbarmanger';
+import Navbarmanager from '../components/Navbarmanager';
 
 function BookingManagement() {
   const [bookings, setBookings] = useState([
