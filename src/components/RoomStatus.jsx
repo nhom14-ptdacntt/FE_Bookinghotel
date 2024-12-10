@@ -49,11 +49,7 @@ function RoomStatus({
                   width: '500px',
                 }}
               >
-                {room.status === 'available' ? (
-                  <button onClick={() => handleCheckIn(room.id)}>Check In</button>
-                ) : (
-                  <button onClick={() => handleCheckOut(room.id)}>Check Out</button>
-                )}
+                
                 <button
                   style={{ margin: '0 16px' }}
                   onClick={() => handleShowEditRoom(room.id)}

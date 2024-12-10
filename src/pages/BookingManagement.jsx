@@ -1,21 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import BookingList from '../components/BookingList';
 import { useNavigate } from 'react-router-dom';
 import '../styles/BookingManagement.css';
 import Navbarmanager from '../components/Navbarmanger';
 import EditBooking from './EditBooking';
+import axios from 'axios';
 
 function BookingManagement() {
   const [bookings, setBookings] = useState([
-    { id: 1, customerName: 'Nguyen Hung Cuong', roomType: 'Deluxe', status: 'confirmed' },
-    { id: 2, customerName: 'Nguyen Van A', roomType: 'Suite', status: 'pending' },
   ]);
+
+  const [accessToken,  setAccessToken] = useState("")
+  const [bookingId, setBookingId] = useState(null)
+
+
+  useEffect(() => {
+    setAccessToken(localStorage.getItem("token"))
+  },[])
+
+  useEffect(() => {
+    callApiGetAllBooking();
+  }, [accessToken])
+
+  
+
+  const callApiGetAllBooking = async () => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Gắn token vào header
+        },
+      };
+      const res = await axios.get("http://localhost:8080/api/booking", config)
+      const data = res.data;
+      setBookings(data.result)
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
   const [showEditBooking, setShowEditBooking] = useState(false)
 
   const navigate = useNavigate();
 
-  const handleEditBooking = () => {
+  const handleEditBooking = (id) => {
    setShowEditBooking(true)
+   setBookingId(id)
+   console.log(bookingId)
   };
 
   const handleCancelBooking = (bookingId) => {
@@ -52,10 +84,11 @@ function BookingManagement() {
         bookings={bookings}
         onEditBooking={handleEditBooking}
         onCancelBooking={handleCancelBooking}
+        callApiGetAllBooking = {callApiGetAllBooking}
       />
       
     </div>
-    {showEditBooking && <EditBooking handleCancel = {handleCancel}/>}
+    {showEditBooking && <EditBooking handleCancel = {handleCancel} bookingId = {bookingId}/>}
     </div>
   );
 }

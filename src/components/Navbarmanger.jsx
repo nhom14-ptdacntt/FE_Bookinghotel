@@ -3,12 +3,13 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import '../styles/Navbarmanager.css';
 
 const Navbarmanager = () => {
-  const [user, setUser] = useState({ username: 'User' });
+  const [user, setUser] = useState({ username: 'Admin' });
   const navigate = useNavigate();
 
   const handleLogout = () => {
     setUser(null);
-    navigate('/');
+    localStorage.removeItem("token")
+    navigate('/signin');
   };
 
   return (
