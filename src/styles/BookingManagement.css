@@ -1,0 +1,195 @@
+
+.booking-page {
+  padding: 0px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+   display: grid; 
+   grid-template-columns: 1fr;
+  justify-items: center; 
+}
+
+.booking-page>h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+
+.booking-list {
+  max-width: 1500px;
+  width: 100%;
+  margin: 20px auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.booking-list thead tr {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.booking-list th, .booking-list td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+.booking-list tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.booking-list tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.booking-list tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.booking-list th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+button {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: white; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: none;
+}
+
+button.edit {
+  background-color: #ff9800; 
+}
+
+button.cancel {
+  background-color: #f44336;
+}
+
+button.view {
+  background-color: #2196f3; 
+}
+
+@media (max-width: 768px) {
+  .booking-list th, .booking-list td {
+    padding: 10px 8px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+.add-booking-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.add-booking-btn:hover {
+  background-color: #45a049;
+}
+.add-booking-page {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.add-booking-page h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.add-booking-page form div {
+  margin-bottom: 15px;
+}
+
+.add-booking-page label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.add-booking-page input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.add-booking-page input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.add-booking-page button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-booking-page button[type="submit"] {
+  background-color: #4CAF50;
+}
+
+.add-booking-page button[type="submit"]:hover {
+  background-color: #45a049;
+}
+.add-booking-page button[type="submit1"] {
+  background-color: #f44336;
+}
+
+.add-booking-page button[type="submit1"]:hover {
+  background-color: #f44336;
+}
+
+.add-booking-page button[type="button"] {
+  background-color: #f44336;
+}
+
+.add-booking-page button[type="button"]:hover {
+  background-color: #e53935;
+}
+
+.add-booking-page form div:last-child {
+  text-align: center;
+}
+
+

@@ -1,0 +1,96 @@
+.navbarmanager {
+  background-color: #4CAF50 !important;
+  color: white !important;
+  padding: 15px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+  margin-bottom: 20px !important; 
+  width: 100% !important;
+  position: relative;
+}
+
+.navbarmanager ul {
+  list-style-type: none !important;
+  margin: 0 !important; 
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.navbarmanager li {
+  margin-right: 30px !important; 
+}
+
+.navbarmanager a {
+    color: white !important;
+    text-decoration: none !important;
+    padding: 10px 15px !important;
+    transition: background-color 0.3s, color 0.3s !important;
+    border-radius: 4px !important;
+  }
+
+  .active-link {
+    background-color: #3575b5 !important;
+    color: yellow !important; 
+  }
+
+.navbarmanager a:hover {
+  background-color: #45a049 !important; 
+  color: white !important; 
+}
+
+@media (max-width: 768px) {
+  .navbarmanager ul {
+    flex-direction: column !important;
+  }
+
+  .navbarmanager li {
+    margin: 10px 0 !important;
+  }
+}
+.navbarmanager {
+  display: flex !important;
+  justify-content: space-between !important; /* Căn khoảng cách giữa các phần */
+  align-items: center !important;
+}
+
+.nav-links {
+  display: flex !important;
+}
+
+.user-info {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.username {
+  margin-right: 15px !important;
+  font-weight: bold !important;
+  color: white !important;
+}
+
+.logout-btn {
+  background-color: #f44336 !important;
+  color: white !important;
+  border: none !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s !important;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f !important;
+}
+
+.login-link {
+  color: white !important;
+  text-decoration: none !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  background-color: #4CAF50 !important;
+  transition: background-color 0.3s, color 0.3s !important;
+}
+
+.login-link:hover {
+  background-color: #45a049 !important;
+}
