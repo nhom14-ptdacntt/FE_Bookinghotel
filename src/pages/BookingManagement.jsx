@@ -7,8 +7,8 @@ import AddBooking from './AddBooking';
 
 function BookingManagement() {
   const [bookings, setBookings] = useState([
-    { id: 1, customerName: 'Nguyen Hung Cuong', checkInDate: '2024-10-10', checkOutDate: '2024-10-12', roomType: 'Deluxe', status: 'confirmed' },
-    { id: 2, customerName: 'Nguyen Van A', checkInDate: '2024-11-01', checkOutDate: '2024-11-05', roomType: 'Suite', status: 'pending' },
+    { id: 1, customerName: 'Nguyen Hung Cuong', roomType: 'Deluxe', status: 'confirmed' },
+    { id: 2, customerName: 'Nguyen Van A', roomType: 'Suite', status: 'pending' },
   ]);
 
   const navigate = useNavigate();

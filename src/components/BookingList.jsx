@@ -13,8 +13,6 @@ function BookingList({ bookings, onViewDetails, onEditBooking, onCancelBooking }
       <thead>
         <tr>
           <th>Booking ID</th>
-          <th>Customer Name</th>
-          <th>Check-in Date</th>
           <th>Check-out Date</th>
           <th>Room Number</th>
           <th>Status</th>
@@ -26,8 +24,6 @@ function BookingList({ bookings, onViewDetails, onEditBooking, onCancelBooking }
           <tr key={booking.id}>
             <td>{booking.id}</td>
             <td>{booking.customerName}</td>
-            <td>{booking.checkInDate}</td>
-            <td>{booking.checkOutDate}</td>
             <td>{booking.roomNumber}</td>
             <td>{booking.status}</td>
             <td>
