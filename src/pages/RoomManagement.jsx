@@ -5,10 +5,10 @@ import "../styles/RoomManagement.css";
 
 function RoomManagement() {
   const [rooms, setRooms] = useState([
-    { id: 1, roomNumber: "101", roomType: "Deluxe", pricePerNight: 100, status: "available", cleanliness: "clean" },
-    { id: 2, roomNumber: "102", roomType: "Suite", pricePerNight: 150, status: "occupied", cleanliness: "clean" },
-    { id: 3, roomNumber: "201", roomType: "Standard", pricePerNight: 80, status: "booked", cleanliness: "cleaning" },
-    { id: 4, roomNumber: "202", roomType: "Deluxe", pricePerNight: 120, status: "available", cleanliness: "clean" },
+    { id: 1, roomNumber: "101", roomType: "Deluxe", pricePerNight: 100, checkInDate: '2024-11-01', checkOutDate: '2024-11-05', status: "available", cleanliness: "clean" },
+    { id: 2, roomNumber: "102", roomType: "Suite", pricePerNight: 150, checkInDate: '2024-11-01', checkOutDate: '2024-11-05', status: "occupied", cleanliness: "clean" },
+    { id: 3, roomNumber: "201", roomType: "Standard", pricePerNight: 80, checkInDate: '2024-11-01', checkOutDate: '2024-11-05', status: "booked", cleanliness: "cleaning" },
+    { id: 4, roomNumber: "202", roomType: "Deluxe", pricePerNight: 120, checkInDate: '2024-11-01', checkOutDate: '2024-11-05', status: "available", cleanliness: "clean" },
   ]);
 
   const [showAddRoom, setShowAddRoom] = useState(false);
@@ -82,7 +82,7 @@ function RoomManagement() {
         </div>
       )}
 
-    
+
     </div>
   );
 }

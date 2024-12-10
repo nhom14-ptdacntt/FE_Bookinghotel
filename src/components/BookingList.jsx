@@ -13,7 +13,7 @@ function BookingList({ bookings, onViewDetails, onEditBooking, onCancelBooking }
       <thead>
         <tr>
           <th>Booking ID</th>
-          <th>Check-out Date</th>
+          <th>Customer Name</th>
           <th>Room Number</th>
           <th>Status</th>
           <th>Actions</th>

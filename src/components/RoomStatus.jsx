@@ -21,6 +21,8 @@ function RoomStatus({
           <th>Room Number</th>
           <th>Room Type</th>
           <th>Price per Night</th>
+          <th>Check-in Date</th>
+          <th>Check-out Date</th>
           <th>Status</th>
           <th>Cleanliness</th>
           <th style={{ width: 500 }}>Actions</th>
@@ -32,6 +34,8 @@ function RoomStatus({
             <td>{room.roomNumber}</td>
             <td>{room.roomType}</td>
             <td>${room.pricePerNight}</td>
+            <td>{room.checkInDate}</td>
+            <td>{room.checkOutDate}</td>
             <td style={{ color: getStatusColor(room.status) }}>{room.status}</td>
             <td>{room.cleanliness || 'N/A'}</td>
             <td>
