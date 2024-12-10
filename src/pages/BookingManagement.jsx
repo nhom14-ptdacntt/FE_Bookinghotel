@@ -5,11 +5,10 @@ import '../styles/BookingManagement.css';
 import Navbarmanager from '../components/Navbarmanger';
 import AddBooking from './AddBooking';
 
-
 function BookingManagement() {
   const [bookings, setBookings] = useState([
-    { id: 1, customerName: 'Nguyen Hung Cuong', checkInDate: '2024-10-10', checkOutDate: '2024-10-12', roomNumber: 'Deluxe', status: 'confirmed' },
-    { id: 2, customerName: 'Nguyen Van A', checkInDate: '2024-11-01', checkOutDate: '2024-11-05', roomNumber: 'Suite', status: 'pending' },
+    { id: 1, customerName: 'Nguyen Hung Cuong', checkInDate: '2024-10-10', checkOutDate: '2024-10-12', roomType: 'Deluxe', status: 'confirmed' },
+    { id: 2, customerName: 'Nguyen Van A', checkInDate: '2024-11-01', checkOutDate: '2024-11-05', roomType: 'Suite', status: 'pending' },
   ]);
 
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ function BookingManagement() {
   };
 
   const handleEditBooking = (booking) => {
-    navigate(`/edit-booking`, { state: { booking } });  
+    navigate(`/booking-detail/${booking.id}`, { state: { booking, editable: true } });
   };
 
   const handleCancelBooking = (bookingId) => {
@@ -30,14 +29,13 @@ function BookingManagement() {
   };
 
   const handleAddBooking = () => {
-    navigate('/add-booking'); 
+    navigate('/add-booking');
   };
-
 
   const handleNewBooking = (newBooking) => {
     setBookings((prevBookings) => [
       ...prevBookings,
-      { ...newBooking, id: prevBookings.length + 1 }, 
+      { ...newBooking, id: prevBookings.length + 1 },
     ]);
   };
 
@@ -54,6 +52,7 @@ function BookingManagement() {
         onEditBooking={handleEditBooking}
         onCancelBooking={handleCancelBooking}
       />
+      {/* <AddBooking onNewBooking={handleNewBooking} /> */}
     </div>
   );
 }

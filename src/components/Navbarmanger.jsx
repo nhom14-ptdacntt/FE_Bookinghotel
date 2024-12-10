@@ -3,17 +3,20 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import '../styles/Navbarmanager.css';
 
 const Navbarmanager = () => {
-  const [user, setUser] = useState({ username: 'User' }); 
+  const [user, setUser] = useState({ username: 'User' });
   const navigate = useNavigate();
 
   const handleLogout = () => {
     setUser(null);
-    navigate('/'); 
+    navigate('/');
   };
 
   return (
     <nav className="navbarmanager">
       <ul className="nav-links">
+        <li>
+          <NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : '')}>Home</NavLink>
+        </li>
         <li>
           <NavLink to="/booking" className={({ isActive }) => (isActive ? 'active-link' : '')}>Booking Management</NavLink>
         </li>

@@ -1,19 +1,17 @@
-
 .booking-page {
   padding: 0px;
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
-   display: grid; 
-   grid-template-columns: 1fr;
-  justify-items: center; 
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
 }
 
-.booking-page>h1 {
+.booking-page > h1 {
   text-align: center;
   color: #333;
   margin-bottom: 30px;
 }
-
 
 .booking-list {
   max-width: 1500px;
@@ -29,13 +27,14 @@
 }
 
 .booking-list thead tr {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   text-align: center;
   font-weight: bold;
 }
 
-.booking-list th, .booking-list td {
+.booking-list th,
+.booking-list td {
   padding: 12px 15px;
   border: 1px solid #ddd;
 }
@@ -53,14 +52,14 @@
 }
 
 .booking-list th {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
 button {
   padding: 8px 12px;
   font-size: 14px;
-  color: white; 
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -77,7 +76,7 @@ button:focus {
 }
 
 button.edit {
-  background-color: #ff9800; 
+  background-color: #ff9800;
 }
 
 button.cancel {
@@ -85,11 +84,12 @@ button.cancel {
 }
 
 button.view {
-  background-color: #2196f3; 
+  background-color: #2196f3;
 }
 
 @media (max-width: 768px) {
-  .booking-list th, .booking-list td {
+  .booking-list th,
+  .booking-list td {
     padding: 10px 8px;
   }
 
@@ -102,7 +102,7 @@ button.view {
   padding: 10px 20px;
   font-size: 16px;
   color: white;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -150,7 +150,7 @@ button.view {
 }
 
 .add-booking-page input:focus {
-  border-color: #4CAF50;
+  border-color: #4caf50;
   outline: none;
 }
 
@@ -166,7 +166,7 @@ button.view {
 }
 
 .add-booking-page button[type="submit"] {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 .add-booking-page button[type="submit"]:hover {
@@ -191,5 +191,3 @@ button.view {
 .add-booking-page form div:last-child {
   text-align: center;
 }
-
-
