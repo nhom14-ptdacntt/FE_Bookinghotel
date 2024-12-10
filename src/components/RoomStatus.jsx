@@ -1,11 +1,11 @@
 import React from 'react';
+import axios from "axios";
 
 function RoomStatus({
   rooms,
   onUpdateRoomStatus,
-  handleShowFormUpdateRoom,
-  handleDeleteRoom,
   handleShowEditRoom,
+  handleDeleteRoom,
 }) {
   const handleCheckIn = (roomId) => {
     onUpdateRoomStatus(roomId, 'occupied');
@@ -14,6 +14,7 @@ function RoomStatus({
   const handleCheckOut = (roomId) => {
     onUpdateRoomStatus(roomId, 'available');
   };
+  
 
   return (
     <table className="room-status-list">
@@ -32,12 +33,12 @@ function RoomStatus({
       <tbody>
         {rooms.map((room) => (
           <tr key={room.id}>
-            <td>{room.roomNumber}</td>
-            <td>{room.roomType}</td>
-            <td>${room.pricePerNight}</td>
+            <td>{room.number}</td>
+            <td>{room.roomType.name}</td>
+            <td>${room.price}</td>
             <td>{room.checkInDate}</td>
             <td>{room.checkOutDate}</td>
-            <td style={{ color: getStatusColor(room.status) }}>{room.status}</td>
+            <td style={{ color: getStatusColor(room.roomStatus.name) }}>{room.roomStatus.name}</td>
          
             <td>
               <div
@@ -55,7 +56,7 @@ function RoomStatus({
                 )}
                 <button
                   style={{ margin: '0 16px' }}
-                  onClick={() => handleShowEditRoom()}
+                  onClick={() => handleShowEditRoom(room.id)}
                 >
                   Edit
                 </button>
@@ -99,11 +100,11 @@ function RoomStatus({
 
 const getStatusColor = (status) => {
   switch (status) {
-    case 'available':
+    case 'AVAIABLE':
       return 'green';
-    case 'booked':
+    case 'BOOKED':
       return 'orange';
-    case 'occupied':
+    case 'OCCUPIED':
       return 'red';
     default:
       return 'black';

@@ -6,50 +6,13 @@ import EditRoom from "../components/EditRoom";
 import axios from "axios";
 
 function RoomManagement() {
-  const [rooms, setRooms] = useState([
-    {
-      id: 1,
-      roomNumber: "101",
-      roomType: "Deluxe",
-      pricePerNight: 100,
-      checkInDate: "2024-11-01",
-      checkOutDate: "2024-11-05",
-      status: "available",
-      cleanliness: "clean",
-    },
-    {
-      id: 2,
-      roomNumber: "102",
-      roomType: "Suite",
-      pricePerNight: 150,
-      checkInDate: "2024-11-01",
-      checkOutDate: "2024-11-05",
-      status: "occupied",
-      cleanliness: "clean",
-    },
-    {
-      id: 3,
-      roomNumber: "201",
-      roomType: "Standard",
-      pricePerNight: 80,
-      checkInDate: "2024-11-01",
-      checkOutDate: "2024-11-05",
-      status: "booked",
-      cleanliness: "cleaning",
-    },
-    {
-      id: 4,
-      roomNumber: "202",
-      roomType: "Deluxe",
-      pricePerNight: 120,
-      checkInDate: "2024-11-01",
-      checkOutDate: "2024-11-05",
-      status: "available",
-      cleanliness: "clean",
-    },
-  ]);
+  const [rooms, setRooms] = useState([]);
   const [accessToken, setAccessToken] = useState("");
   const [roomType, setRoomType] = useState([]);
+  const [roomTypeName, setRoomTypeName] = useState("");
+  const [loading, setLoading] = useState(false)
+
+  const [roomid, setRoomId] = useState(null)
 
   const [showAddRoom, setShowAddRoom] = useState(false);
   const [showEditRoom, setShowEditRoom] = useState(false);
@@ -63,9 +26,130 @@ function RoomManagement() {
     desc: "",
     img: "",
   });
+
+  const [roomNumber, setRoomNumber] = useState("");
+  const [roomTypeID, setRoomTypeID] = useState("");
+  const [roomTypeIdEdit, setRoomTypeIdEdit] = useState("");
+  const [price, setPrice] = useState(null);
+  useEffect(() => {
+   callApiGetAllRoom();
+   
+  }, [accessToken])
   useEffect(() => {
     setAccessToken(localStorage.getItem("token"));
   }, []);
+
+  const callApiGetAllRoom = async () => {
+    try {
+ 
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Gắn token vào header
+        },
+      };
+  
+      const res = await axios.get("http://localhost:8080/api/room",config)
+      const data = res.data
+      console.log(data);
+      
+      setRooms(data.result)
+   
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const callApiDeleteRoom = async (roomId) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Gắn token vào header
+        },
+      };
+      const res = await axios.delete(`http://localhost:8080/api/room/delete/${roomId}`,config)
+      console.log("OK")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const handleDeleteRoom = (roomId) => {
+    callApiDeleteRoom(roomId)
+    .then(() => {
+      // Gọi API để lấy lại danh sách phòng mới
+      callApiGetAllRoom(); // Bạn cần phải định nghĩa hàm callApiGetRooms để lấy lại danh sách phòng
+    })
+    .catch((error) => {
+      console.error('Lỗi khi xóa phòng:', error);
+    });
+  }
+  const handleRoomTypeIdChange = (newRoomTypeId) => {
+    setRoomTypeIdEdit(newRoomTypeId);
+    console.log(roomTypeIdEdit)
+  }
+
+  const callApiEditRoom = async (room) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Gắn token vào header
+        },
+      };
+      const res = await axios.post(`http://localhost:8080/api/room/edit/${roomid}`,room,config)
+      toast.success('Sửa thành công', {
+        position: 'top-right',
+        autoClose: 3000
+      });
+    } catch (error) {
+      
+    }
+  }
+  const handleClickSave = () => {
+    const updateRoom = {
+      roomNumber: roomNumber,
+      roomTypeId: roomTypeID,
+      price: price
+    }
+    callApiEditRoom(updateRoom)
+    .then(() => {
+      // Gọi API để lấy lại danh sách phòng mới
+      callApiGetAllRoom(); // Bạn cần phải định nghĩa hàm callApiGetRooms để lấy lại danh sách phòng
+    })
+    .catch((error) => {
+      console.error('Lỗi khi sửa phòng:', error);
+    });
+    setShowEditRoom(false)
+  }
+
+  
+
+  const handleChangeRoomNumber = (e) => {
+    setRoomNumber(e.target.value);
+  };
+  const handleChangeRoomTypeName = (e) => {
+    setRoomTypeName(e.target.value);
+    setRoomTypeID(e.target.value)
+  };
+  const handleChangePrice = (e) => {
+    setPrice(e.target.value);
+  };
+
+  const handleAddNewRoom = () => {
+    const newRoom = {
+      roomNumber: roomNumber,
+      roomTypeId: roomTypeID,
+      price: price
+    }
+    callApiAddRoom(newRoom)
+    .then(() => {
+      // Gọi API để lấy lại danh sách phòng mới
+      callApiGetAllRoom(); // Bạn cần phải định nghĩa hàm callApiGetRooms để lấy lại danh sách phòng
+    })
+    .catch((error) => {
+      console.error('Lỗi khi thêm phòng:', error);
+    });
+    setShowAddRoom(false)
+  }
+
+
 
   const handleUpdateRoomStatus = (roomId, newStatus) => {
     const updatedRooms = rooms.map((room) =>
@@ -75,28 +159,22 @@ function RoomManagement() {
   };
 
   const handleShowFormAddRoom = () => {
+    setPrice("")
+    setRoomNumber("");
     setShowAddRoom(true);
     callApiGetRoomtype();
     console.log("roomg");
   };
-  const handleShowEditRoom = () => {
+  const handleShowEditRoom = (id) => {
     setShowEditRoom(true);
-    console.log(showEditRoom);
+    setRoomId(id)
+    console.log(roomid)
   };
   const handleCancelEditRoom = () => {
     setShowEditRoom(false);
   };
 
-  const handleAddRoom = () => {
-    const newRoomNumber = (rooms.length + 1).toString();
-    const newRoom = {
-      ...dataCreateRoom,
-      id: rooms.length + 1,
-      roomNumber: newRoomNumber,
-    };
-    setRooms((prevRooms) => [...prevRooms, newRoom]);
-    setShowAddRoom(false);
-  };
+
 
   const handleCancelForm = () => {
     setShowAddRoom(false);
@@ -117,6 +195,20 @@ function RoomManagement() {
       console.error("Lỗi khi gọi API:", error);
     }
   };
+  const callApiAddRoom = async (room) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`, // Gắn token vào header
+        },
+      };
+      const res = await axios.post("http://localhost:8080/api/room/create",room,config)
+      const data = res.data;
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="room-management-page">
@@ -129,6 +221,7 @@ function RoomManagement() {
 
       <RoomStatus
         rooms={rooms}
+        handleDeleteRoom={handleDeleteRoom}
         onUpdateRoomStatus={handleUpdateRoomStatus}
         handleShowEditRoom={handleShowEditRoom}
       />
@@ -159,13 +252,8 @@ function RoomManagement() {
                       className="form-control"
                       id="roomNumber"
                       placeholder="Enter room number"
-                      value={dataCreateRoom.roomNumber}
-                      onChange={(e) =>
-                        setDataCreateRoom({
-                          ...dataCreateRoom,
-                          roomNumber: e.target.value,
-                        })
-                      }
+                      value={roomNumber}
+                      onChange={handleChangeRoomNumber}
                     />
                   </div>
                   <div className="mb-3">
@@ -175,19 +263,14 @@ function RoomManagement() {
                     <select
                       className="form-select"
                       id="roomType"
-                      // value={dataCreateRoom.roomType}
-                      // onChange={(e) =>
-                      //   setDataCreateRoom({
-                      //     ...dataCreateRoom,
-                      //     roomType: e.target.value,
-                      //   })
-                      // }
+                      value={roomTypeName}
+                      onChange={handleChangeRoomTypeName}
                     >
                       <option value="" disabled>
                         Select a room type
                       </option>
                       {roomType.map((type, index) => (
-                        <option key={index} value={type}>
+                        <option key={index} value={type.id}>
                           {type.name}
                         </option>
                       ))}
@@ -203,13 +286,8 @@ function RoomManagement() {
                       className="form-control"
                       id="price"
                       placeholder="Enter price"
-                      value={dataCreateRoom.price}
-                      onChange={(e) =>
-                        setDataCreateRoom({
-                          ...dataCreateRoom,
-                          price: e.target.value,
-                        })
-                      }
+                      value={price}
+                      onChange={handleChangePrice}
                     />
                   </div>
                 </form>
@@ -218,7 +296,7 @@ function RoomManagement() {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={handleAddRoom}
+                  onClick={handleAddNewRoom}
                 >
                   Add Room
                 </button>
@@ -234,7 +312,7 @@ function RoomManagement() {
           </div>
         </div>
       )}
-      {showEditRoom && <EditRoom handleCancelEditRoom={handleCancelEditRoom} />}
+      {showEditRoom && <EditRoom handleCancelEditRoom={handleCancelEditRoom} setShowEditRoom ={setShowEditRoom } callApiGetAllRoom={callApiGetAllRoom} roomid = {roomid}/>}
     </div>
   );
 }
