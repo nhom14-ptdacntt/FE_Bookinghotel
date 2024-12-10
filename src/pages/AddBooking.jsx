@@ -39,45 +39,30 @@ const AddBooking = ({ onAdd }) => {
 
   return (
     <div className="add-booking-page">
-      <h2>Thêm Booking</h2>
+      <h2>Add Booking</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Họ tên:</label>
+          <label>Full Name:</label>
           <input
             type="text"
             value={customerName}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Nhập họ tên"
+            placeholder="Enter họ tên"
           />
         </div>
+        
         <div>
-          <label>Ngày check-in:</label>
-          <input
-            type="date"
-            value={checkInDate}
-            onChange={(e) => setCheckin(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Ngày check-out:</label>
-          <input
-            type="date"
-            value={checkOutDate}
-            onChange={(e) => setCheckout(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Mã phòng:</label>
+          <label>Room Number:</label>
           <input
             type="text"
             value={roomNumber}
             onChange={(e) => setRoomNumber(e.target.value)}
-            placeholder="Nhập mã phòng"
+            placeholder="Enter Room Number"
           />
         </div>
         <div>
-          <button type="submit">Thêm</button>
-          <button type="button" onClick={handleCancel}>Huỷ</button>
+          <button type="submit">Add</button>
+          <button type="button" onClick={handleCancel}>Cancel</button>
         </div>
       </form>
     </div>

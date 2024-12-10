@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import '../styles/EditBooking.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import "../styles/EditBooking.css";
 
-const EditBooking = () => {
-  const { state } = useLocation(); 
-  const booking = state?.booking; 
+const EditBooking = ({handleCancel}) => {
+  const { state } = useLocation();
+  const booking = state?.booking;
 
   const [customerName, setCustomerName] = useState(booking?.customerName || "");
-  const [checkInDate, setCheckInDate] = useState(booking?.checkInDate || "");
-  const [checkOutDate, setCheckOutDate] = useState(booking?.checkOutDate || "");
   const [roomNumber, setRoomNumber] = useState(booking?.roomNumber || "");
 
   const navigate = useNavigate();
@@ -33,49 +31,67 @@ const EditBooking = () => {
     alert("Booking đã được chỉnh sửa thành công!");
 
     // Quay lại trang BookingManagement sau khi lưu
-    navigate('/booking');
+    navigate("/booking");
   };
 
   return (
-    <div className="edit-booking-page">
-      <h2>Chỉnh sửa Booking</h2>
-      <form onSubmit={handleSave}>
-        <div>
-          <label>Họ tên:</label>
-          <input
-            type="text"
-            value={customerName}
-            onChange={(e) => setCustomerName(e.target.value)}
-          />
+    <div
+      className="modal fade show d-block"
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+    >
+      <div className="modal-dialog modal-lg">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Edit Booking</h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={handleCancel}
+            ></button>
+          </div>
+          <div className="modal-body">
+            <form onSubmit={handleSave}>
+              <div className="mb-3">
+                <label htmlFor="customerName" className="form-label">
+                  Customer Name:
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="customerName"
+                  value={customerName}
+                  onChange={(e) => setCustomerName(e.target.value)}
+                />
+              </div>
+      
+              <div className="mb-3">
+                <label htmlFor="roomNumber" className="form-label">
+                  RoomNumber
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="roomNumber"
+                  value={roomNumber}
+                  onChange={(e) => setRoomNumber(e.target.value)}
+                />
+              </div>
+              <div className="modal-footer">
+                <button type="submit" className="btn btn-primary">
+                  Lưu
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleCancel}
+                >
+                  Hủy
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div>
-          <label>Ngày check-in:</label>
-          <input
-            type="date"
-            value={checkInDate}
-            onChange={(e) => setCheckInDate(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Ngày check-out:</label>
-          <input
-            type="date"
-            value={checkOutDate}
-            onChange={(e) => setCheckOutDate(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Mã phòng:</label>
-          <input
-            type="text"
-            value={roomNumber}
-            onChange={(e) => setRoomNumber(e.target.value)}
-          />
-        </div>
-        <div>
-          <button type="submit">Lưu</button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

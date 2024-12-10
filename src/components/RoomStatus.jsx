@@ -5,6 +5,7 @@ function RoomStatus({
   onUpdateRoomStatus,
   handleShowFormUpdateRoom,
   handleDeleteRoom,
+  handleShowEditRoom,
 }) {
   const handleCheckIn = (roomId) => {
     onUpdateRoomStatus(roomId, 'occupied');
@@ -24,7 +25,7 @@ function RoomStatus({
           <th>Check-in Date</th>
           <th>Check-out Date</th>
           <th>Status</th>
-          <th>Cleanliness</th>
+          
           <th style={{ width: 500 }}>Actions</th>
         </tr>
       </thead>
@@ -37,7 +38,7 @@ function RoomStatus({
             <td>{room.checkInDate}</td>
             <td>{room.checkOutDate}</td>
             <td style={{ color: getStatusColor(room.status) }}>{room.status}</td>
-            <td>{room.cleanliness || 'N/A'}</td>
+         
             <td>
               <div
                 style={{
@@ -54,7 +55,7 @@ function RoomStatus({
                 )}
                 <button
                   style={{ margin: '0 16px' }}
-                  onClick={() => handleShowFormUpdateRoom && handleShowFormUpdateRoom(room)}
+                  onClick={() => handleShowEditRoom()}
                 >
                   Edit
                 </button>

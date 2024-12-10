@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BookingList({ bookings, onViewDetails, onEditBooking, onCancelBooking }) {
+function BookingList({ bookings, onEditBooking, onCancelBooking }) {
   const handleCancelClick = (bookingId) => {
     const confirmed = window.confirm('Are you sure you want to cancel this booking?');
     if (confirmed) {
@@ -27,7 +27,7 @@ function BookingList({ bookings, onViewDetails, onEditBooking, onCancelBooking }
             <td>{booking.roomNumber}</td>
             <td>{booking.status}</td>
             <td>
-              <button className="edit" onClick={() => onEditBooking(booking)}>Edit</button>
+              <button className="edit" onClick={() => onEditBooking()}>Edit</button>
               <button className="cancel" onClick={() => handleCancelClick(booking.id)}>Cancel</button>
             </td>
           </tr>
