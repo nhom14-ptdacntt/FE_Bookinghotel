@@ -1,0 +1,24 @@
+.background-radial-gradient {
+  background-image: url('../components/image/login.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.bg-glass {
+  background-color: hsla(0, 0%, 100%, 0.7) !important ;
+  backdrop-filter: blur(10px) !important; 
+  border-radius: 40px !important;
+  padding: 20px;
+}
+button, .btn {
+  height: 38px;
+  line-height: 50px;
+  vertical-align: middle; 
+  overflow: hidden;
+}
+.form-control {
+  background-color: #fff !important;
+  color: #000 !important;
+}

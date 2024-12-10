@@ -1,0 +1,11 @@
+.d-flex.justify-content-end {
+    display: flex !important;
+    justify-content: flex-end !important;
+    
+  }.collapse-content{
+    display: flex;
+  }
+  .ms-auto {
+    margin-left: auto !important;
+  }
+  
