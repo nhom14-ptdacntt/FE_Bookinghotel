@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function RoomStatus({
   rooms,
@@ -8,13 +9,14 @@ function RoomStatus({
   handleDeleteRoom,
 }) {
   const handleCheckIn = (roomId) => {
-    onUpdateRoomStatus(roomId, 'occupied');
+    onUpdateRoomStatus(roomId, "occupied");
+    navigate("/")
   };
 
   const handleCheckOut = (roomId) => {
-    onUpdateRoomStatus(roomId, 'available');
+    onUpdateRoomStatus(roomId, "available");
   };
-  
+  const navigate = useNavigate();
 
   return (
     <table className="room-status-list">
@@ -23,10 +25,8 @@ function RoomStatus({
           <th>Room Number</th>
           <th>Room Type</th>
           <th>Price per Night</th>
-          <th>Check-in Date</th>
-          <th>Check-out Date</th>
           <th>Status</th>
-          
+
           <th style={{ width: 500 }}>Actions</th>
         </tr>
       </thead>
@@ -36,31 +36,45 @@ function RoomStatus({
             <td>{room.number}</td>
             <td>{room.roomType.name}</td>
             <td>${room.price}</td>
-            <td>{room.checkInDate}</td>
-            <td>{room.checkOutDate}</td>
-            <td style={{ color: getStatusColor(room.roomStatus.name) }}>{room.roomStatus.name}</td>
-         
+
+            <td style={{ color: getStatusColor(room.roomStatus.name) }}>
+              {room.roomStatus.name}
+            </td>
+
             <td>
               <div
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '500px',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "500px",
                 }}
               >
-                
+                {room.status === "available" ? (
+                  <button
+                    onClick={() => {
+                      handleCheckIn(room.id);
+                      
+                    }}
+                  >
+                    Check In
+                  </button>
+                ) : (
+                  <button onClick={() => handleCheckOut(room.id)}>
+                    Check Out
+                  </button>
+                )}
                 <button
-                  style={{ margin: '0 16px' }}
+                  style={{ margin: "0 16px" }}
                   onClick={() => handleShowEditRoom(room.id)}
                 >
                   Edit
                 </button>
                 <div
                   style={{
-                    margin: '0 16px',
-                    padding: '4px 8px',
-                    cursor: 'pointer',
+                    margin: "0 16px",
+                    padding: "4px 8px",
+                    cursor: "pointer",
                   }}
                   onClick={() => handleDeleteRoom && handleDeleteRoom(room.id)}
                 >
@@ -96,14 +110,14 @@ function RoomStatus({
 
 const getStatusColor = (status) => {
   switch (status) {
-    case 'AVAIABLE':
-      return 'green';
-    case 'BOOKED':
-      return 'orange';
-    case 'OCCUPIED':
-      return 'red';
+    case "AVAIABLE":
+      return "green";
+    case "BOOKED":
+      return "orange";
+    case "OCCUPIED":
+      return "red";
     default:
-      return 'black';
+      return "black";
   }
 };
 

@@ -57,7 +57,7 @@ const AddBooking = ({ onAdd }) => {
     navigate("/booking")
     } catch (error) {
       console.log(error);
-      toast.error(`Error: ${errorMessage}`, {
+      toast.error(`Error: ${error}`, {
         position: "top-right",
         autoClose: 5000, // Đóng sau 5 giây
         hideProgressBar: false,
